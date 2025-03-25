@@ -47,10 +47,10 @@ webServer.use("/api/calendar", authorization, calendar);
 webServer.use(authorization, chart);
 
 if (process.env.NODE_ENV === "production") {
-  webServer.use(express.static(__dirname, "../frontend/dish"));
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  appendFile.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend", "disk", "index.html"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
 
